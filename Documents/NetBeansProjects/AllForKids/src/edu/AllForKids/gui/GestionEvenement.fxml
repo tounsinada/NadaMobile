@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.AllForKids.gui.GestionEvenementController">
+   <children>
+      <ImageView fitHeight="376.0" fitWidth="337.0" layoutX="132.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/balloons.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="7.0" layoutY="19.0" prefHeight="671.0" prefWidth="204.0" spacing="12.0">
+         <children>
+            <TextField id="Titre" fx:id="Titre" promptText="Titre" style="-fx-border-color: #2471A3;" />
+            <TextArea id="Description" fx:id="Description" prefHeight="61.0" prefWidth="200.0" promptText="Description" style="-fx-border-color: #2471A3;" />
+            <ImageView fx:id="AfficheIMG" fitHeight="92.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
+            <HBox prefHeight="29.0" prefWidth="187.0" spacing="5.0">
+               <children>
+                  <TextField id="affiche" fx:id="FilePath" editable="false" prefHeight="25.0" prefWidth="141.0" promptText="affiche" style="-fx-border-color: #2471A3;" />
+                  <Button fx:id="UploadImg" mnemonicParsing="false" onAction="#UplaodImg" prefHeight="27.0" style="-fx-background-color: #22A7F0;" text="Upload" textFill="WHITE" />
+               </children>
+            </HBox>
+            <DatePicker id="DateDeb" fx:id="DateDebut" prefHeight="27.0" prefWidth="199.0" promptText="Date Debut : JJ/MM/AAAA" style="-fx-border-color: #2471A3;" />
+            <DatePicker id="DateFin" fx:id="DateFin" prefHeight="27.0" prefWidth="199.0" promptText="Date Fin : JJ/MM/AAAA" style="-fx-border-color: #2471A3;" />
+            <TextField id="Lieu" fx:id="Lieu" onAction="#LieuChanged2" promptText="Lieu" style="-fx-border-color: #2471A3;" />
+            <TextField id="Frais" fx:id="Tarif" promptText="Tarif" style="-fx-border-color: #2471A3;" />
+            <TextField id="Contact" fx:id="Ticketdispo" promptText="Ticket disponible" style="-fx-border-color: #2471A3;" />
+            <ComboBox id="Type" fx:id="Categorie" prefWidth="196.0" promptText="Categorie" style="-fx-border-color: #2471A3; -fx-background-color: #FFFF;" />
+            <Pane prefHeight="0.0" prefWidth="200.0" />
+            <HBox prefHeight="38.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button id="Ajout" fx:id="AddEvent" mnemonicParsing="false" onAction="#AjouterEven" prefHeight="28.0" style="-fx-background-color: #22A7F0;" text="Ajouter" textFill="WHITE" />
+                  <Button id="Modif" fx:id="EditEvent" mnemonicParsing="false" onAction="#ModifierEven" prefHeight="28.0" style="-fx-background-color: #22A7F0;" text="Modifier" textFill="WHITE" />
+                  <Button id="Supprimer" fx:id="supprimer" mnemonicParsing="false" onAction="#DeletEven" prefHeight="28.0" style="-fx-background-color: #22A7F0;" text="Supprimer" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Button id="Ajout" fx:id="reset" mnemonicParsing="false" onAction="#vider" prefHeight="28.0" style="-fx-background-color: #22A7F0;" text="Reset" textFill="WHITE" />
+         </children>
+      </VBox>
+      <VBox layoutX="777.0" layoutY="14.0" prefHeight="635.0" prefWidth="189.0" spacing="5.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#Miseajour" prefHeight="25.0" prefWidth="167.0" style="-fx-background-color: #22A7F0;" text="Mise à jour" textFill="WHITE" />
+            <Pane prefHeight="50.0" prefWidth="189.0" />
+            <HBox prefHeight="41.0" prefWidth="189.0" spacing="5.0">
+               <children>
+                  <TextField id="cherch" fx:id="Chercher" prefHeight="27.0" prefWidth="119.0" promptText="chercher" style="-fx-border-color: #2471A3;" />
+                  <Button id="ChercherBtn" fx:id="btnchercher" mnemonicParsing="false" onAction="#Search" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: #22A7F0;" text="chercher" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label text="Filtrer par type">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="5.0" prefWidth="189.0" />
+            <VBox prefHeight="134.0" prefWidth="189.0" spacing="10.0">
+               <children>
+                  <CheckBox id="Randonnée" fx:id="Cultiver" mnemonicParsing="false" text="Pour se cultiver" />
+                  <CheckBox id="Voyage" fx:id="Distraire" mnemonicParsing="false" text="Pour se distraire" />
+                  <CheckBox id="Camping" fx:id="Cinema" mnemonicParsing="false" text="Cinema" />
+                  <CheckBox id="Marathon" fx:id="Rando" mnemonicParsing="false" text="Randonnée" />
+                  <CheckBox id="Autre" fx:id="autre" mnemonicParsing="false" text="Autre" />
+               </children>
+            </VBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="189.0">
+               <children>
+                  <Button id="Filtre" fx:id="filtre" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Filtre" prefHeight="28.0" prefWidth="62.0" style="-fx-background-color: #22A7F0;" text="Filtrer" textFill="WHITE" />
+                  <Pane prefHeight="30.0" prefWidth="5.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="223.0" layoutY="14.0" prefHeight="661.0" prefWidth="550.0" spacing="6.0">
+         <children>
+            <TableView fx:id="eventList" focusTraversable="false" onMouseClicked="#SlectTable" prefHeight="450.0" prefWidth="500.0">
+               <columns>
+                  <TableColumn fx:id="EventID" prefWidth="75.0" text="Event ID" visible="false" />
+                  <TableColumn fx:id="UserID" prefWidth="75.0" text="User ID" visible="false" />
+                  <TableColumn prefWidth="75.0" text="Evenement">
+                     <columns>
+                        <TableColumn fx:id="TITRE" prefWidth="75.0" text="Titre" />
+                        <TableColumn fx:id="DESCRIPTION" prefWidth="75.0" text="Description" visible="false" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Date &amp; Lieu">
+                     <columns>
+                        <TableColumn fx:id="DATEDEBUT" prefWidth="75.0" text="Date Debut" />
+                        <TableColumn fx:id="DATEFIN" prefWidth="75.0" text="Date Fin" />
+                        <TableColumn fx:id="LIEU" prefWidth="75.0" text="Lieu" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Details">
+                     <columns>
+                        <TableColumn fx:id="TARIF" prefWidth="75.0" text="Tarif" />
+                        <TableColumn fx:id="TICKETDISPONIBLE" prefWidth="75.0" text="Ticket Disponible" />
+                        <TableColumn fx:id="AFFICHE" prefWidth="75.0" text="Affiche" visible="false" />
+                        <TableColumn fx:id="DESCRIPTION" prefWidth="75.0" text="Description" />
+                        <TableColumn fx:id="AFFICHEIMAGE" prefWidth="75.0" text="Nom Image" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn fx:id="CATEGORIE" prefWidth="75.0" text="Categorie" />
+               </columns>
+            </TableView>
+            <WebView fx:id="WebView" prefHeight="187.0" prefWidth="550.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
