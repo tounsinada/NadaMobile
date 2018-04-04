@@ -69,7 +69,7 @@
             <Pane prefHeight="6.0" prefWidth="225.0" />
             <VBox prefHeight="460.0" prefWidth="225.0" spacing="6.0">
                <children>
-                  <Button fx:id="BtnActualite" mnemonicParsing="false" onAction="#GetAcceuil" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #FFFF;" text="Acceuil" textFill="#2471a3">
+                  <Button fx:id="BtnAcceuil" mnemonicParsing="false" onAction="#GetAcceuil" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #FFFF;" text="Acceuil" textFill="#2471a3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -105,7 +105,7 @@
       </VBox>
    </left>
    <center>
-      <ScrollPane fx:id="AncoMain" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="SrollPaneMain" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>

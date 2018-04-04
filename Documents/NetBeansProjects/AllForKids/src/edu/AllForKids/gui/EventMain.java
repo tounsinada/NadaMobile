@@ -6,10 +6,13 @@
 package edu.AllForKids.gui;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -19,19 +22,30 @@ import javafx.stage.Stage;
 public class EventMain extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        Parent root;
-        
-            //Parent root = FXMLLoader.load(getClass().getResource("LoginUser.fxml"));
+    public void start(Stage primaryStage) {
+        try {
+            Parent root;
+            
+            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             //root = FXMLLoader.load(getClass().getResource("GestionEvenement.fxml"));
-            root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
-            //root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+//            root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+            //root = FXMLLoader.load(getClass().getResource("EvenementFrontEnd.fxml"));
+           // root = FXMLLoader.load(getClass().getResource("R.fxml"));
+            
+            /// root = FXMLLoader.load(getClass().getResource("AC.fxml"));
+            //  root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+            
+            
+            // root = FXMLLoader.load(getClass().getResource("aal.fxml"));
 
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
             primaryStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(EventMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

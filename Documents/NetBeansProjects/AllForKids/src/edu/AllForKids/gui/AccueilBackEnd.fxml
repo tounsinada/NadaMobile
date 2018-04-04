@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -23,11 +24,19 @@
                <children>
                   <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="90.0" prefWidth="177.0" style="-fx-background-color: #81CFE0;">
                      <children>
-                        <ImageView fitHeight="51.0" fitWidth="162.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="51.0" fitWidth="162.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="-6.0">
                            <image>
                               <Image url="@../../../../build/classes/edu/AllForKids/images/logo.png" />
                            </image>
+                           <rotationAxis>
+                              <Point3D x="1.0" y="1.0" z="1.0" />
+                           </rotationAxis>
                         </ImageView>
+                        <Label fx:id="NomGestionnaire" prefHeight="20.0" prefWidth="142.0" text="Gestionnaire " textFill="WHITE" translateX="20.0" translateY="4.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" styleClass="back" />

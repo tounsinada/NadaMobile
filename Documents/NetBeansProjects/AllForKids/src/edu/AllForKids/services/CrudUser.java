@@ -57,8 +57,12 @@ public class CrudUser {
             
             while (rs.next()) {
                 
-                User m = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("sexe"), rs.getString("roles"), rs.getString("password"));
-                // User(rs.getInt("id"),rs.getString("username"),rs.getString("sexe"),rs.getString("email"),rs.getInt("roles"),rs.getString("MDP"),rs.getString("TYPE"));
+                User m = new User(rs.getInt("id"), 
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("sexe"),
+                        rs.getString("roles"),
+                        rs.getString("password"));
                 return m;
             }
             
@@ -70,4 +74,19 @@ public class CrudUser {
 
     }
 
+    public  User Authentification(String email , String password) throws SQLException{
+        String requete=" SELECT * FROM user where email='"+email+"' AND password='"+password+"'" ;
+        ste=cnx.createStatement() ;
+        rs=ste.executeQuery(requete);
+      
+        while(rs.next()){
+        
+   User m = new User(rs.getString("email"), rs.getString("password"));         
+        return m ;
+        }
+        return null ;
+    
+    }
+    
+    
 }

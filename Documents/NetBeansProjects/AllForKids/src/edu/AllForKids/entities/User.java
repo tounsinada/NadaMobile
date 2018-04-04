@@ -46,8 +46,12 @@ public class User {
         this.Sexe = Sexe;
         this.adresse = adresse;
     }
+    
+     public User( String email, String password) {
+        this.password = password;
+        this.email = email;}
 
-    public User(int id, String username, String email, String password, String roles, String Sexe) {
+    public User(int id, String username, String email, String password,  String roles, String Sexe) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -56,6 +60,21 @@ public class User {
         this.Sexe = Sexe;
     }
 
+    public User(int id, String username, String email, String password, String roles, String nom_image, String Sexe, String adresse, int enabled ) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.nom_image = nom_image;
+        this.Sexe = Sexe;
+        this.adresse = adresse;
+        this.enabled = enabled;
+    }
+
+  
+
+    
     
     public int getId() {
         return id;

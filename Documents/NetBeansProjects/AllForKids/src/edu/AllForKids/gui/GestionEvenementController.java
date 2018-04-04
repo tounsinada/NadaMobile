@@ -122,7 +122,7 @@ public class GestionEvenementController implements Initializable {
     @FXML
     private TableColumn<Evenement, Integer> TICKETDISPONIBLE;
     @FXML
-    private TableColumn<Evenement, ?> AFFICHEIMAGE;
+    private TableColumn<Evenement, String> AFFICHEIMAGE;
     @FXML
     private TableColumn<Evenement, Integer> CATEGORIE;
     @FXML
@@ -138,6 +138,8 @@ public class GestionEvenementController implements Initializable {
     private int id_even = 0;
     @FXML
     private Button reset;
+    @FXML
+    private TableColumn<?, ?> AFFICHE;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -146,13 +148,10 @@ public class GestionEvenementController implements Initializable {
         ObservableList Combo = FXCollections.observableArrayList(c);
         Categorie.getItems().clear();
         Categorie.setItems(Combo);
-        /**
-         * ****
-         */
-
+       
         UpdateList();
         /**
-         * ***Affichage de la liste des evene***
+         * ***Affichage de la liste des even***
          */
 
         l = CE.afficherEvenement();
@@ -162,8 +161,8 @@ public class GestionEvenementController implements Initializable {
         eventList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Evenement SelectedEvenet = eventList.getItems().get(eventList.getSelectionModel().getSelectedIndex());
-                E = SelectedEvenet;
+                Evenement SelectedEvent = eventList.getItems().get(eventList.getSelectionModel().getSelectedIndex());
+                E = SelectedEvent;
                 vider();
             }
         });
@@ -443,7 +442,7 @@ public class GestionEvenementController implements Initializable {
         Tarif.setText("");
         Ticketdispo.setText("");
         Categorie.setValue("");
-        Categorie.setPromptText("Type");
+        Categorie.setPromptText("Categorie");
         AfficheIMG.imageProperty().set(null);
         EditEvent.setText("Modifier");
         AddEvent.setVisible(true);

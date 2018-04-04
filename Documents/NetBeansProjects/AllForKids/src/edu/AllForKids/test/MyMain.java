@@ -26,15 +26,18 @@ public class MyMain {
        // CrudCategorie crudCateg=new CrudCategorie();
        //crudCateg.ajouterCategorie(cat);
         //crudCateg.afficherCategorie();
-      //  CrudEvenement CE=new  CrudEvenement();
-        //Evenement e=new Evenement();
-       // System.out.println("/////"+CE.afficherEvenement());        
+      /* CrudEvenement CE=new  CrudEvenement();
+        Evenement e=new Evenement();
+        System.out.println("/////"+CE.displayAllEvenement());   */     
         
        
         
         /*User utilisateur=new User("hh", "ggg", "uyy", "Parent", 0, "jjj", "hhhh");
         CrudUser crudutili=new CrudUser();
         crudutili.ajouter_utilisateur(utilisateur);*///
+        
+        
+        
     }
     
 }

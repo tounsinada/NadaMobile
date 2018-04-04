@@ -108,7 +108,7 @@ public class CrudEvenement {
 
         String requete = "SELECT * FROM evenement " + " ORDER BY date_debut DESC";
         Statement ste = cnx.createStatement();
-        ResultSet rs = ste.executeQuery(requete);
+        rs = ste.executeQuery(requete);
         ObservableList<Evenement> list = FXCollections.observableArrayList();
         while (rs.next()) {
             Evenement e = new Evenement();
@@ -169,5 +169,19 @@ public class CrudEvenement {
     } 
     
     
+ public Evenement EvenementByID(int id) throws SQLException{
+       String requete="SELECT * FROM evenement Where id_even= " + id +" ORDER BY date_debut DESC" ;
+        pst=cnx.prepareStatement(requete);
+        rs=pst.executeQuery(requete);
+       Evenement E =new Evenement() ;
+        while(rs.next()){                   
+        E = new Evenement(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4),rs.getString(5), rs.getDate(6),rs.getDate(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
+        
+        }
+
+        return E ;
+    }
+ 
+ 
     
 }
