@@ -81,7 +81,10 @@ public class CrudUser {
       
         while(rs.next()){
         
-   User m = new User(rs.getString("email"), rs.getString("password"));         
+   User m = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),rs.getString("enabled"),
+           rs.getString("password"), rs.getString("roles"));
+
+                
         return m ;
         }
         return null ;

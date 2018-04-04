@@ -60,16 +60,17 @@ public class AccueilBackEndController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
  try {    
-             GestionUser = FXMLLoader.load(getClass().getResource("/View/GestionUser.fxml"));
-             GestionStore = FXMLLoader.load(getClass().getResource(".fxml"));
-             GestionEvenement = FXMLLoader.load(getClass().getResource(".fxml"));
-             GestionEspace = FXMLLoader.load(getClass().getResource(".fxml"));
-             GestionBabySitter = FXMLLoader.load(getClass().getResource(".fxml"));
-             GestionPediatre = FXMLLoader.load(getClass().getResource(".fxml"));
-              NomGestionnaire.setText("Gestionnaire des users");
+             //GestionUser = FXMLLoader.load(getClass().getResource(".fxml"));
+           //  GestionStore = FXMLLoader.load(getClass().getResource(".fxml"));
+             GestionEvenement = FXMLLoader.load(getClass().getResource("GestionEvenement.fxml"));
+            // GestionEspace = FXMLLoader.load(getClass().getResource(".fxml"));
+            // GestionBabySitter = FXMLLoader.load(getClass().getResource(".fxml"));
+            // GestionPediatre = FXMLLoader.load(getClass().getResource(".fxml"));
+             // NomGestionnaire.setText("Gestionnaire des users");
               
-              Image image = new Image("file:"+ LoginController.CurrentUser.getNom_image());
-              UserPicture.setImage(image);
+             //Image image = new Image("file:"+ LoginController.CurrentUser.getNom_image());
+              System.out.println(LoginController.CurrentUser.getNom_image());
+             // UserPicture.setImage(image);
               
         } catch (IOException ex) {
              System.out.println("controller.AccueilController.initialize() "+ex);

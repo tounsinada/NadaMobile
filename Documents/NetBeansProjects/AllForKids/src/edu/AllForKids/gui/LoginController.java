@@ -31,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -52,7 +53,9 @@ public class LoginController implements Initializable {
     private Text BtnForgetPassword;
     @FXML
     private PasswordField tfpass;
-    public static User CurrentUser;
+    public static User CurrentUser
+            
+            ;
 
     /**
      * Initializes the controller class.
@@ -94,7 +97,10 @@ public class LoginController implements Initializable {
             String pass = tfpass.getText();
             CrudUser crudutilisateur = new CrudUser();
             User u = crudutilisateur.Authentification(email, pass);
+                            System.out.println("user n'est pas null *****"+u);
+
             if (u == null) {
+                System.out.println("iln'yapas dns base");
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setContentText("Email ou mot de passe incorrect");
                 a.showAndWait();
@@ -102,33 +108,40 @@ public class LoginController implements Initializable {
 
             } else {
                 CurrentUser = u;
-                if (u.getRoles().equals("admin")) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccueilBackEnd.fxml"));
-
-                    AnchorPane root = loader.load();
-                    AccueilBackEndController dashboard = loader.getController();
-
-                    dashboard.setLabelUserName(u.getUsername(), u.getId());
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Accueil");
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                    primaryStage.setMaximized(true);
-
-                } else if (u.getRoles().equals("Parent")) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AcceuilFrontEnd.fxml"));
-
-                    BorderPane root = loader.load();
-                    AcceuilFrontEndController frontaceuil = loader.getController();
-
-                    frontaceuil.setLabelUserName(u.getUsername(), u.getId());
-                    Scene scene = new Scene(root);
-                    primaryStage.setTitle("Accueil");
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                    primaryStage.setMaximized(true);
-
+                if(!u.getRoles().equals("Parent")){
+                System.out.println("parent");
+                
+              primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
                 }
+                else if (!u.getRoles().equals("Admin")){
+                 primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+                }
+                else if (!u.getRoles().equals("Pediatre")){
+                                        System.out.println("    ped");
+
+                primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+                }
+                else if (!u.getRoles().equals("BabySitter")){
+                 primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+                }
+
+                
             }
         }
 
@@ -138,9 +151,7 @@ public class LoginController implements Initializable {
         return file;
     }
 
-    public static User getCurrentUser() {
-        return CurrentUser;
-    }
+  
 
     @FXML
     private void Register(ActionEvent event) throws IOException {

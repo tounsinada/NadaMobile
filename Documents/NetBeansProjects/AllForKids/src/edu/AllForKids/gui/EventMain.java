@@ -34,7 +34,8 @@ public class EventMain extends Application {
             
             /// root = FXMLLoader.load(getClass().getResource("AC.fxml"));
             //  root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
-            
+                        //root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+
             
             // root = FXMLLoader.load(getClass().getResource("aal.fxml"));
 

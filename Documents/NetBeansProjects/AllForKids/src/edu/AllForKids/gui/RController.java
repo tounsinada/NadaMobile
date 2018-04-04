@@ -39,7 +39,7 @@ import javax.swing.JOptionPane;
  * @author LENOVO
  */
 public class RController implements Initializable {
-
+    
     @FXML
     private TextField tfmail;
     @FXML
@@ -82,21 +82,20 @@ public class RController implements Initializable {
         homme.setSelected(true);
         ObservableList Combo = FXCollections.observableArrayList("Parent", "BabySitter", "Pediatre", "Prestataire");
         Role.setItems(Combo);
-        System.out.println("jjjjj");
     }
-
+    
     @FXML
     private void btnconnexion(ActionEvent event) throws IOException {
-        primarystage=new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Scene scene = new Scene(root);
-            primarystage.setScene(scene);
-            primarystage.show();
+        primarystage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene scene = new Scene(root);
+        primarystage.setScene(scene);
+        primarystage.show();
     }
-
+    
     @FXML
     private void Register(ActionEvent event) throws IOException {
-
+        
         if (!Nom.getText().equals("")) {
             Nom.setStyle("-fx-border-color : white ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ;");
             Nom.setPromptText("Inserez votre nom ici !!!");
@@ -105,7 +104,7 @@ public class RController implements Initializable {
             Email.setStyle("-fx-border-color : white ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ;");
             Email.setPromptText("Inserez votre mail ici !!!");
         }
-
+        
         if (!Pass.getText().equals("")) {
             Pass.setStyle("-fx-border-color : white ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ;");
             Pass.setPromptText("Inserez votre password ici !!!");
@@ -113,22 +112,22 @@ public class RController implements Initializable {
         if (!RepeterPass.getText().equals("")) {
             RepeterPass.setStyle("-fx-border-color : white ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ;");
             RepeterPass.setPromptText("Repeter votre password ici !!!");
-
+            
         }
-
+        
         if (Nom.getText().equals("") || Email.getText().equals("") || Pass.getText().equals("")
                 || RepeterPass.getText().equals("") || Role.getSelectionModel().getSelectedIndex() == -1) {
 
             // (img.getProperties().isEmpty())
             System.out.println("1");
-
+            
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("Veuillez remplir les champs manquants");
             a.showAndWait();
             if (Nom.getText().equals("")) {
                 Nom.setStyle("-fx-border-color : red ;");
             }
-
+            
             if (Role.getSelectionModel().getSelectedIndex() == -1) {
                 Role.setStyle("-fx-border-color : red ;");
             }
@@ -141,39 +140,40 @@ public class RController implements Initializable {
             if (RepeterPass.getText().equals("")) {
                 RepeterPass.setStyle("-fx-border-color : red ;");
             }
-
+            
         } else {
             RadioButton selectedRadioButton = (RadioButton) gender.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText().toLowerCase();
             CrudUser crudutilisateur = new CrudUser();
             if (crudutilisateur.FindByEmail(Email.getText()) == null) {
-                User u = new User(0, Nom.getText(), Email.getText(), Pass.getText(),
+                User u = new User(Nom.getText(), Email.getText(), Pass.getText(),
                         Role.getSelectionModel().getSelectedItem(), toogleGroupValue);
-
+                
                 if (!RepeterPass.getText().equals(Pass.getText())) {
-
+                    
                     do {
                         RepeterPass.setStyle("-fx-border-color : red ;");
                         JOptionPane.showMessageDialog(null, " le password répété est erroné!!!");
                     } while (RepeterPass.getText().equals(Pass.getText()));
-
+                    
                 } else {
-
+                    
                     crudutilisateur.ajouter_utilisateur(u);
+                    u.setEnabled(1);
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setContentText("nouveau compte est créé");
                     a.showAndWait();
                 }
-
+                
             } else {
                 Alert a = new Alert(Alert.AlertType.WARNING);
                 a.setContentText("adresse email existe deja connectez vous");
                 a.showAndWait();
             }
         }
-
+        
     }
-
+    
     @FXML
     private void Reset(ActionEvent event) {
         femme.setSelected(false);
@@ -183,20 +183,20 @@ public class RController implements Initializable {
         Nom.clear();
         RepeterPass.clear();
         img.imageProperty().set(null);
-
+        
     }
-
+    
     @FXML
     private void Choisir(ActionEvent event) {
-
+        
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
         FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
         File file = fileChooser.showOpenDialog(null);
-
+        
         Image image = new Image("file:" + file.getAbsolutePath());
         img.imageProperty().set(image);
     }
-
+    
 }

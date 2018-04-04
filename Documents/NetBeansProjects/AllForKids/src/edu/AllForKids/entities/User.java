@@ -46,6 +46,24 @@ public class User {
         this.Sexe = Sexe;
         this.adresse = adresse;
     }
+
+     public User( String username, String email, String password,  String roles, String Sexe) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.Sexe = Sexe;
+    }
+
+    public User(int id, String username, String email, int enabled, String password, String roles) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.enabled = enabled;
+        this.password = password;
+        this.roles = roles;
+    }
+    
     
      public User( String email, String password) {
         this.password = password;
@@ -236,6 +254,11 @@ public class User {
 
     public void setNumTe(int numTe) {
         this.numTe = numTe;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email=" + email + ", email_canonical=" + email_canonical + ", enabled=" + enabled + ", salt=" + salt + ", password=" + password + ", last_login=" + last_login + ", confirmation_token=" + confirmation_token + ", password_requested_at=" + password_requested_at + ", roles=" + roles + ", nom_image=" + nom_image + ", Age=" + Age + ", Sexe=" + Sexe + ", adresse=" + adresse + ", Ville=" + Ville + ", nbrAnneeExp=" + nbrAnneeExp + ", Etat=" + Etat + ", numTe=" + numTe + '}';
     }
 
     
