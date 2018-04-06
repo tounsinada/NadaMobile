@@ -6,10 +6,12 @@
 package edu.AllForKids.gui;
 
 import edu.AllForKids.entities.User;
+import static edu.AllForKids.gui.LoginController.CurrentUser;
 import edu.AllForKids.services.CrudUser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,15 +84,85 @@ public class RController implements Initializable {
         homme.setSelected(true);
         ObservableList Combo = FXCollections.observableArrayList("Parent", "BabySitter", "Pediatre", "Prestataire");
         Role.setItems(Combo);
+//                primarystage.setMaximized(true); 
+
     }
     
     @FXML
-    private void btnconnexion(ActionEvent event) throws IOException {
-        primarystage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+    private void btnconnexion(ActionEvent event) throws IOException, SQLException {
+        tfmail.setStyle(" -fx-border-color : white ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white");
+        tfpass.setStyle(" -fx-border-color : white ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white");
+
+        if (tfmail.getText().equals("") || tfpass.getText().equals("")) {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Veuillez inserer votre email et votre mot de pass");
+            a.showAndWait();
+
+            if (tfmail.getText().equals("")) {
+                tfmail.setStyle("-fx-border-color : red ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ");
+            Alert b = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Veuillez inserer votre email ");
+            a.showAndWait();
+            }
+            if (tfpass.getText().equals("")) {
+                tfpass.setStyle("-fx-border-color : red ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ");
+            Alert c = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Veuillez inserer  et votre mot de pass");
+            a.showAndWait();
+            }
+        } else {
+            String email = tfmail.getText();
+            String pass = tfpass.getText();
+            CrudUser crudutilisateur = new CrudUser();
+            User u = crudutilisateur.Authentification(email, pass);
+                            System.out.println("user n'est pas null *****"+u);
+
+            if (u == null) {
+                System.out.println("iln'yapas dns base");
+                Alert a = new Alert(Alert.AlertType.WARNING);
+                a.setContentText("Email ou mot de passe incorrect");
+                a.showAndWait();
+                System.out.println("mailfaut");
+
+            } else {
+                CurrentUser = u;
+                if(!u.getRoles().equals("Parent")){
+                System.out.println("parent");
+                
+              primarystage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
         Scene scene = new Scene(root);
         primarystage.setScene(scene);
         primarystage.show();
+                }
+                else if (!u.getRoles().equals("Admin")){
+                 primarystage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+        Scene scene = new Scene(root);
+        primarystage.setScene(scene);
+        primarystage.show();
+                }
+                else if (!u.getRoles().equals("Pediatre")){
+                                        System.out.println("    ped");
+
+                primarystage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+        Scene scene = new Scene(root);
+        primarystage.setScene(scene);
+        primarystage.show();
+                }
+                else if (!u.getRoles().equals("BabySitter")){
+                 primarystage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+        Scene scene = new Scene(root);
+        primarystage.setScene(scene);
+        primarystage.show();
+                }
+
+                
+            }
+        }
+
     }
     
     @FXML

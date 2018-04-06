@@ -6,6 +6,7 @@
 
 package edu.AllForKids.entities;
 
+import edu.AllForKids.services.CrudCategorie;
 import edu.AllForKids.utils.MyConnexion;
 import java.sql.Connection;
 import java.sql.Date;
@@ -32,7 +33,9 @@ public class Evenement {
     private String description;
     private int ticket_disponible	;
     private int Tarif;
-
+    String nomcateg;
+    CrudCategorie C;
+   
     public Evenement() {
     }
 
@@ -72,6 +75,8 @@ public class Evenement {
         this.ticket_disponible = ticket_disponible;
         this.Tarif = Tarif;
     }
+    
+  
         
 
     public int getId_cat() {

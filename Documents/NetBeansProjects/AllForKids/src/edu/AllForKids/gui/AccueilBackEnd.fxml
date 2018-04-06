@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.AllForKids.gui.AccueilBackEndController">
+<AnchorPane fx:id="rootpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.AllForKids.gui.AccueilBackEndController">
    <children>
       <AnchorPane prefHeight="92.0" prefWidth="985.0" style="-fx-background-color: #2471A3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,15 +26,15 @@
                      <children>
                         <ImageView fitHeight="51.0" fitWidth="162.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="-6.0">
                            <image>
-                              <Image url="@../../../../build/classes/edu/AllForKids/images/logo.png" />
+                              <Image url="@../images/logo.png" />
                            </image>
                            <rotationAxis>
                               <Point3D x="1.0" y="1.0" z="1.0" />
                            </rotationAxis>
                         </ImageView>
-                        <Label fx:id="NomGestionnaire" prefHeight="20.0" prefWidth="142.0" text="Gestionnaire " textFill="WHITE" translateX="20.0" translateY="4.0">
+                        <Label fx:id="NomGestionnaire" prefHeight="20.0" prefWidth="142.0" text="Gestionnaire " textFill="WHITE" translateX="10.0" translateY="4.0">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -58,27 +58,27 @@
                         <Separator prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         <HBox prefHeight="25.0" prefWidth="420.0" spacing="6.0" VBox.vgrow="NEVER">
                            <children>
-                              <Button onAction="#GetGestionUser" prefHeight="150.0" prefWidth="170.0" style="-fx-background-color: #FAFAFA;" text="Utilisateur">
+                              <Button onAction="#GetGestionUser" prefHeight="150.0" prefWidth="140.0" style="-fx-background-color: #FAFAFA;" text="Utilisateur" translateX="3.0">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Button>
-                              <Button onAction="#GetGestionStore" prefHeight="150.0" prefWidth="170.0" style="-fx-background-color: #FAFAFA;" text="Store">
+                              <Button onAction="#GetGestionStore" prefHeight="150.0" prefWidth="140.0" style="-fx-background-color: #FAFAFA;" text="Store" translateX="1.0">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Button>
-                              <Button onAction="#GetGestionEvenement" prefHeight="150.0" prefWidth="170.0" style="-fx-background-color: #FAFAFA;" text="Evenement">
+                              <Button onAction="#GetGestionEvenement" prefHeight="150.0" prefWidth="140.0" style="-fx-background-color: #FAFAFA;" text="Evenement">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Button>
-                              <Button onAction="#GetGestionEspace" prefHeight="150.0" prefWidth="170.0" style="-fx-background-color: #FAFAFA;" text="Espace Enfants">
+                              <Button onAction="#GetGestionEspace" prefHeight="150.0" prefWidth="140.0" style="-fx-background-color: #FAFAFA;" text="Espace Enfants">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Button>
-                              <Button onAction="#GetGestionBabySitter" prefHeight="150.0" prefWidth="170.0" style="-fx-background-color: #FAFAFA;" text="Baby sitter">
+                              <Button onAction="#GetGestionBabySitter" prefHeight="150.0" prefWidth="135.0" style="-fx-background-color: #FAFAFA;" text="Baby sitter" translateX="-1.0">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Button>
-                              <Button onAction="#GetGestionPediatre" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #FAFAFA;" text="Pédiatre">
+                              <Button onAction="#GetGestionPediatre" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #FAFAFA;" text="Pédiatre" translateX="-3.0">
                                  <font>
                                     <Font size="10.0" />
                                  </font></Button>

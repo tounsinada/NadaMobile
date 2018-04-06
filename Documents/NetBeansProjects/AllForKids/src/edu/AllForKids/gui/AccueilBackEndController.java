@@ -46,6 +46,8 @@ public class AccueilBackEndController implements Initializable {
     AnchorPane GestionUser,GestionStore,GestionEvenement,GestionEspace,GestionBabySitter,GestionPediatre;
         Stage primaryStage ;
             public User CurrentUser ;
+    @FXML
+    private AnchorPane rootpane;
 
 
     /**
@@ -69,7 +71,7 @@ public class AccueilBackEndController implements Initializable {
              // NomGestionnaire.setText("Gestionnaire des users");
               
              //Image image = new Image("file:"+ LoginController.CurrentUser.getNom_image());
-              System.out.println(LoginController.CurrentUser.getNom_image());
+//              System.out.println(LoginController.CurrentUser.getNom_image());
              // UserPicture.setImage(image);
               
         } catch (IOException ex) {
@@ -138,11 +140,9 @@ setNode(GestionEvenement);
     @FXML
     private void disconnect(MouseEvent event) throws IOException {
         
-       primaryStage=new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+        AnchorPane pane=FXMLLoader.load(getClass().getResource("Login.fxml"));
+        
+        rootpane.getChildren().setAll(pane);
     }
     
      private void initiliser(User u) {

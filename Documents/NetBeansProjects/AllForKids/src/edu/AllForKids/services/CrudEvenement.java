@@ -106,7 +106,7 @@ public class CrudEvenement {
 
     public ObservableList<Evenement> displayAllEvenement() throws SQLException {
 
-        String requete = "SELECT * FROM evenement " + " ORDER BY date_debut DESC";
+        String requete = "SELECT * FROM evenement  ORDER BY date_debut DESC";
         Statement ste = cnx.createStatement();
         rs = ste.executeQuery(requete);
         ObservableList<Evenement> list = FXCollections.observableArrayList();

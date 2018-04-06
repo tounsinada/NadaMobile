@@ -93,4 +93,19 @@ public class CrudCategorie {
               return rs.getInt("id");
         return -1;
     }
+    public String findNomCategorieById(int IdCat) throws SQLException
+    {
+         String req = "SELECT * FROM categorie WHERE id=?";
+         
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1, IdCat);
+        
+            ResultSet rs = st.executeQuery();
+          while(rs.next())
+           
+              return rs.getString("nomCategorie");
+        return null;
+    }
+    
+    
 }

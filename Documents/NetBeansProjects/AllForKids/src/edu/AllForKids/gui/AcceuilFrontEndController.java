@@ -28,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -63,6 +64,9 @@ public class AcceuilFrontEndController implements Initializable {
      */
     Stage primaryStage;
     AnchorPane GestionUser, GestionStore, GestionEvenement, GestionEspace, GestionBabySitter, GestionPediatre, AcceuilClient;
+    private AnchorPane rootpane;
+    @FXML
+    private AnchorPane ScrollPaneMain;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,12 +108,12 @@ public class AcceuilFrontEndController implements Initializable {
 
     @FXML
     private void Lougout(MouseEvent event) throws IOException {
-         primaryStage=new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-         
+        
+        AnchorPane pane=FXMLLoader.load(getClass().getResource("Login.fxml"));
+        
+        rootpane.getChildren().setAll(pane);
+        
+       
     }
 
     private void setNode(Node node) {

@@ -13,9 +13,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.AllForKids.gui.LoginController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.AllForKids.gui.LoginController">
    <children>
-      <VBox alignment="CENTER_LEFT" layoutX="350.0" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #59ABE3;">
+      <HBox prefHeight="100.0" prefWidth="200.0" >
+          <children>
+      <VBox prefHeight="200.0" prefWidth="300.0">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="343.0" style="-fx-background-color: #C5EFF7;">
+               <children>
+                  <ImageView fitHeight="400.0" fitWidth="300.0" layoutX="25.0" layoutY="143.0" opacity="0.21" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../AllForKids/images/balloons.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="116.0" fitWidth="166.0" layoutX="25.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../AllForKids/images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnsignup" layoutX="143.0" layoutY="376.0" mnemonicParsing="false" onAction="#Register" style="-fx-background-color: #0288D1; -fx-text-fill: #ffffff; -fx-background-radius: 0px;" text="S'inscrire" />
+                  <Label layoutX="42.0" layoutY="101.0" text="Bienvenue" textFill="#f1a9a0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="191.0" text="&quot;tous les necessités de votre enfants sont à vos disposition&quot;" textFill="#22313f" />
+                  <Text layoutX="19.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #595d61;" text="Nos enfants sont la raison de notre existeance. Et comme etant parents nous essayons de toujours de couvrir tous leurs besoin.Vue la charge du travail , il devient presque imppossibe de satisfaire leurs besoins rapidement comme avant.La solution réside dans notre application qui réuni les principales necessités de votre enfant ensemle  pour vous faciliter la tache.Nous souhaitons que vous  l'utilise ." wrappingWidth="311.83984375" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #59ABE3;">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
@@ -53,27 +82,7 @@
             </HBox>
          </children>
       </VBox>
-      <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #C5EFF7;">
-         <children>
-            <ImageView fitHeight="400.0" fitWidth="300.0" layoutX="25.0" layoutY="143.0" opacity="0.21" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../AllForKids/images/balloons.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="116.0" fitWidth="166.0" layoutX="25.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../AllForKids/images/logo.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnsignup" layoutX="143.0" layoutY="376.0" mnemonicParsing="false" onAction="#Register" style="-fx-background-color: #0288D1; -fx-text-fill: #ffffff; -fx-background-radius: 0px;" text="S'inscrire" />
-            <Label layoutX="42.0" layoutY="101.0" text="Bienvenue" textFill="#f1a9a0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="18.0" layoutY="191.0" text="&quot;tous les necessités de votre enfants sont à vos disposition&quot;" textFill="#22313f" />
-            <Text layoutX="19.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #595d61;" text="Nos enfants sont la raison de notre existeance. Et comme etant parents nous essayons de toujours de couvrir tous leurs besoin.Vue la charge du travail , il devient presque imppossibe de satisfaire leurs besoins rapidement comme avant.La solution réside dans notre application qui réuni les principales necessités de votre enfant ensemle  pour vous faciliter la tache.Nous souhaitons que vous  l'utilise ." wrappingWidth="311.83984375" />
-         </children>
-      </AnchorPane>
+      </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>

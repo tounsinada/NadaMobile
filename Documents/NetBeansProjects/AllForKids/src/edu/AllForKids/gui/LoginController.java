@@ -48,8 +48,6 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnsignup;
     @FXML
-    private AnchorPane Pane;
-    @FXML
     private Text BtnForgetPassword;
     @FXML
     private PasswordField tfpass;
@@ -132,6 +130,8 @@ public class LoginController implements Initializable {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+                primaryStage.setMaximized(true); 
+
                 }
                 else if (!u.getRoles().equals("BabySitter")){
                  primaryStage = new Stage();
@@ -139,6 +139,8 @@ public class LoginController implements Initializable {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+                primaryStage.setMaximized(true); 
+
                 }
 
                 

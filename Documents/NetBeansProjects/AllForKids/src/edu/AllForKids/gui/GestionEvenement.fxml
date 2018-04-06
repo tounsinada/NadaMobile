@@ -88,14 +88,12 @@
       </VBox>
       <VBox layoutX="223.0" layoutY="14.0" prefHeight="661.0" prefWidth="550.0" spacing="6.0">
          <children>
-            <TableView fx:id="eventList" focusTraversable="false" onMouseClicked="#SlectTable" prefHeight="450.0" prefWidth="500.0">
+            <TableView fx:id="eventList" focusTraversable="false" onMouseClicked="#SlectTable" prefHeight="450.0" prefWidth="562.0">
                <columns>
                   <TableColumn fx:id="EventID" prefWidth="75.0" text="Event ID" visible="false" />
-                  <TableColumn fx:id="UserID" prefWidth="75.0" text="User ID" visible="false" />
-                  <TableColumn prefWidth="75.0" text="Evenement">
+                  <TableColumn minWidth="50.0" prefWidth="75.0" text="Evenement">
                      <columns>
                         <TableColumn fx:id="TITRE" prefWidth="75.0" text="Titre" />
-                        <TableColumn fx:id="DESCRIPTION" prefWidth="75.0" text="Description" visible="false" />
                      </columns>
                   </TableColumn>
                   <TableColumn prefWidth="75.0" text="Date &amp; Lieu">
@@ -109,9 +107,7 @@
                      <columns>
                         <TableColumn fx:id="TARIF" prefWidth="75.0" text="Tarif" />
                         <TableColumn fx:id="TICKETDISPONIBLE" prefWidth="75.0" text="Ticket Disponible" />
-                        <TableColumn fx:id="AFFICHE" prefWidth="75.0" text="Affiche" visible="false" />
                         <TableColumn fx:id="DESCRIPTION" prefWidth="75.0" text="Description" />
-                        <TableColumn fx:id="AFFICHEIMAGE" prefWidth="75.0" text="Nom Image" />
                      </columns>
                   </TableColumn>
                   <TableColumn fx:id="CATEGORIE" prefWidth="75.0" text="Categorie" />

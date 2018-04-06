@@ -26,14 +26,14 @@ public class EventMain extends Application {
         try {
             Parent root;
             
-            root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+           //root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             //root = FXMLLoader.load(getClass().getResource("GestionEvenement.fxml"));
-//            root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
-            //root = FXMLLoader.load(getClass().getResource("EvenementFrontEnd.fxml"));
-           // root = FXMLLoader.load(getClass().getResource("R.fxml"));
+           // root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+            root = FXMLLoader.load(getClass().getResource("EvenementFrontEnd.fxml"));
+          // root = FXMLLoader.load(getClass().getResource("R.fxml"));
             
             /// root = FXMLLoader.load(getClass().getResource("AC.fxml"));
-            //  root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+              //root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
                         //root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
 
             
@@ -41,7 +41,7 @@ public class EventMain extends Application {
 
             Scene scene = new Scene(root);
 
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("All For Kids!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

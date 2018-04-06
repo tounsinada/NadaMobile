@@ -106,8 +106,6 @@ public class GestionEvenementController implements Initializable {
     @FXML
     private TableColumn<Evenement, Integer> EventID;
     @FXML
-    private TableColumn<Evenement, Integer> UserID;
-    @FXML
     private TableColumn<Evenement, String> TITRE;
     @FXML
     private TableColumn<Evenement, String> DESCRIPTION;
@@ -121,7 +119,6 @@ public class GestionEvenementController implements Initializable {
     private TableColumn<Evenement, Integer> TARIF;
     @FXML
     private TableColumn<Evenement, Integer> TICKETDISPONIBLE;
-    @FXML
     private TableColumn<Evenement, String> AFFICHEIMAGE;
     @FXML
     private TableColumn<Evenement, Integer> CATEGORIE;
@@ -138,8 +135,6 @@ public class GestionEvenementController implements Initializable {
     private int id_even = 0;
     @FXML
     private Button reset;
-    @FXML
-    private TableColumn<?, ?> AFFICHE;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -148,12 +143,11 @@ public class GestionEvenementController implements Initializable {
         ObservableList Combo = FXCollections.observableArrayList(c);
         Categorie.getItems().clear();
         Categorie.setItems(Combo);
-       
+
         UpdateList();
         /**
          * ***Affichage de la liste des even***
          */
-
         l = CE.afficherEvenement();
         ObservableList observableList = FXCollections.observableArrayList(l);
         eventList.setItems(observableList);
@@ -173,17 +167,14 @@ public class GestionEvenementController implements Initializable {
         EventID.setCellValueFactory(new PropertyValueFactory<>("Id_even"));
         TITRE.setCellValueFactory(new PropertyValueFactory<>("Titre"));
         DESCRIPTION.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        AFFICHEIMAGE.setCellValueFactory(new PropertyValueFactory<>("AFFICHE_E"));
         DATEDEBUT.setCellValueFactory(new PropertyValueFactory<>("Date_debut"));
         DATEFIN.setCellValueFactory(new PropertyValueFactory<>("Date_fin"));
         TARIF.setCellValueFactory(new PropertyValueFactory<>("Tarif"));
         LIEU.setCellValueFactory(new PropertyValueFactory<>("Lieu"));
         TICKETDISPONIBLE.setCellValueFactory(new PropertyValueFactory<>("Ticket_disponible"));
         CATEGORIE.setCellValueFactory(new PropertyValueFactory<>("Id_cat"));
-        AFFICHEIMAGE.setCellValueFactory(new PropertyValueFactory<>("Nom_image"));
 
     }
-
     @FXML
     private void UplaodImg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -216,45 +207,64 @@ public class GestionEvenementController implements Initializable {
             if ("".equals(Titre.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur de saisie");
-                alert.setHeaderText("Attention");
+                alert.setHeaderText("Attention!!!");
                 alert.setContentText("Le titre est un champ obligatoire !");
                 alert.showAndWait();
             } else if ("".equals(Description.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur de saisie");
-                alert.setHeaderText("Attention");
+                alert.setHeaderText("Attention !!!");
                 alert.setContentText("La description est un champ obligatoire !");
+                alert.showAndWait();
+            } else if ("".equals(FilePath.getText())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de saisie");
+                alert.setHeaderText("Attention!!!");
+                alert.setContentText("il faut entrer une image !");
                 alert.showAndWait();
             } else if (LocalDate.now().toEpochDay() >= DateDebut.getValue().toEpochDay()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur Date");
-                alert.setHeaderText("Attention");
+                alert.setHeaderText("Attention!!!!");
                 alert.setContentText("la date de début de l'évenement doit etre superieur à la date courante !");
                 alert.showAndWait();
             } else if (LocalDate.now().toEpochDay() >= DateFin.getValue().toEpochDay() || DateFin.getValue().toEpochDay() < DateDebut.getValue().toEpochDay()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur de saisie");
-                alert.setHeaderText("Attention");
+                alert.setTitle("Erreur Date");
+                alert.setHeaderText("Attention!!!");
                 alert.setContentText("Verifie la date du fin de l'evenement !");
                 alert.showAndWait();
 
             } else if ("".equals(Tarif.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur de saisie");
-                alert.setHeaderText("Attention");
+                alert.setHeaderText("Attention!!!");
                 alert.setContentText("Verifie le tarif de l'evenemenemt !");
                 alert.showAndWait();
             } else if ("".equals(Ticketdispo.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur de saisie");
-                alert.setHeaderText("Attention");
+                alert.setHeaderText("Attention!!!");
                 alert.setContentText("Verifie le nombre de tickets disponibles  !");
                 alert.showAndWait();
-            } else if ((Categorie.getSelectionModel().getSelectedIndex()) == 0) {
+            } else if ((Categorie.getSelectionModel().getSelectedItem()) == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur de saisie");
-                alert.setHeaderText("Attention");
+                alert.setHeaderText("Attention!!!");
                 alert.setContentText("Il faut choisir une categorie de l'evenement  !");
+                alert.showAndWait();
+            } else if (!"".equals(Tarif.getText()) && (Integer.parseInt(Tarif.getText())) <= 0) {
+                System.out.println("prix negatif");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de saisie du tarif");
+                alert.setHeaderText("Attention!!!!");
+                alert.setContentText("le prix ne doit pas etre inférieur à 0  !");
+                alert.showAndWait();
+            } else if (!"".equals(Ticketdispo.getText()) && (Integer.parseInt(Ticketdispo.getText())) <= 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de saisie du nombre de tickets disponibles");
+                alert.setHeaderText("Attention!!!");
+                alert.setContentText("le nombre de tickets disponibles ne doit pas etre inférieur à 0  !");
                 alert.showAndWait();
             } else {
 
@@ -265,13 +275,17 @@ public class GestionEvenementController implements Initializable {
                 int id_cat = cat.findCategorieByName(cc);
 
                 System.err.println(id_cat);
-                E = new Evenement(Titre.getText(), id_cat, FilePath.getText(), Date.valueOf(DateDebut.getValue().toString()), Date.valueOf(DateFin.getValue().toString()), Lieu.getText(), Description.getText(), Integer.parseInt(Ticketdispo.getText()), Integer.parseInt(Tarif.getText()));
+                E = new Evenement(Titre.getText(), id_cat, FilePath.getText(), Date.valueOf(DateDebut.getValue().toString()),
+            Date.valueOf(DateFin.getValue().toString()), Lieu.getText(), Description.getText(), 
+                        Integer.parseInt(Ticketdispo.getText()), Integer.parseInt(Tarif.getText()));
                 System.out.println(Categorie.getValue());
-                //E.setID_UTILISATEUR(LoginGUIController.CurrentUser.getId());
+                String nomcateg=cat.findNomCategorieById(E.getId_cat());
 
                 CE.ajouterEvenement(E);
                 JOptionPane.showMessageDialog(null, "evenement ajouté avec succée");
                 l = CE.afficherEvenement();
+               
+           
                 ObservableList observableList = FXCollections.observableArrayList(l);
                 eventList.setItems(observableList);
             }
@@ -368,7 +382,6 @@ public class GestionEvenementController implements Initializable {
 
             } else {
                 vider();
-                System.out.println("   hhhh");
             }
 
             if ("Modifier".equals(EditEvent.getText())) {
@@ -401,7 +414,7 @@ public class GestionEvenementController implements Initializable {
         Tarif.setText(tarif1);
         String ticket = String.valueOf(E.getTicket_disponible());
         Ticketdispo.setText(ticket);
-        Categorie.getSelectionModel().select(E.getId_cat());
+        Categorie.getSelectionModel().select(E.getCategorie().getNomCategorie());
 
     }
 

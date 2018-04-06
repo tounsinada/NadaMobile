@@ -140,9 +140,27 @@ public class EvenementFrontEndController implements Initializable {
                 Label categorie = new Label("categorie :" + E.getCategorie());
                 categorie.setTextFill(Color.web("#17202A"));
 
+                //read more
+                HBox Hbtn = new HBox(10);
+                Button button = new Button("Voir Plus d'information");
+                button.setStyle("-fx-background-color:  #2471A3");
+                button.setTextFill(Color.web("#FBFCFC"));
+                button.setAccessibleText("" + E.getId_even());
+                button.onActionProperty().set((event) -> {
+                    try {
+                        LisTEvent.setContent(AfficheEvent(button.getAccessibleText()));
+                    } catch (SQLException ex) {
+
+                    } catch (FileNotFoundException ex) {
+
+                    }
+                });
+
                 root.getChildren().addAll(IMG, sep, root2, Description);
-                root2.getChildren().addAll(Titre, root3);
                 root3.getChildren().addAll(Datedebut, Lieu, Tarif, categorie);
+                Hbtn.getChildren().addAll(button);
+
+                root2.getChildren().addAll(Titre, root3, Hbtn);
 
             } catch (Exception e) {
                 System.out.println("exeption du try affiche all event");
@@ -157,9 +175,9 @@ public class EvenementFrontEndController implements Initializable {
 
     }
 
-    public Node AfficheEvent(Integer id) throws SQLException, FileNotFoundException {
+    public Node AfficheEvent(String id) throws SQLException, FileNotFoundException {
 
-        E = CE.EvenementByID(id);
+        E = CE.EvenementByID(Integer.parseInt(id));
 
         VBox V0 = new VBox(10);
         HBox H0 = new HBox(6);
@@ -169,12 +187,61 @@ public class EvenementFrontEndController implements Initializable {
         ImageView IMG = new ImageView(image);
         IMG.preserveRatioProperty().set(true);
 
+        //Titre
         HBox H1 = new HBox(8);
         Label Titre = new Label(E.getTitre());
         Titre.setFont(new Font("Arial", 30));
-
+        TextArea Descrip = new TextArea(E.getDescription());
+        Descrip.setWrapText(true);
+        //Description
+        Descrip.setFont(new Font("Arial", 14));
+        Descrip.editableProperty().set(false);
+        Descrip.setMaxHeight(150);
+        //Detaille
         HBox H2 = new HBox(10);
-        Label Datedebut = new Label("Date début : " + E.getDate_debut());
+        Label DateDebut = new Label("Date de début : " + E.getDate_debut());
+        DateDebut.setFont(new Font("Arial", 14));
+        Label DateFin = new Label("Date du fib : " + E.getDate_fin());
+        DateFin.setFont(new Font("Arial", 14));
+        Label Lieu = new Label("Lieu : " + E.getId_cat());
+        Lieu.setFont(new Font("Arial", 14));
+        Lieu.setFont(new Font("Arial", 14));
+        Label Catgeorie = new Label("Lieu : " + E.getId_cat());
+        Catgeorie.setFont(new Font("Arial", 14));
+        Catgeorie.setFont(new Font("Arial", 14));
+
+        Label TichetDispo = new Label("Durée : " + E.getTicket_disponible());
+        TichetDispo.setFont(new Font("Arial", 14));
+        Label Tarif = new Label("Lieu : " + E.getTarif() + "DT");
+        Tarif.setFont(new Font("Arial", 14));
+
+        VBox V1 = new VBox(10);
+
+        Button btnRetour = new Button("< Retour ");
+        btnRetour.setStyle("-fx-background-color:  #2471A3 ; -fx-font-weight: bold");
+        btnRetour.setTextFill(Color.web("#FDFEFE"));
+
+        btnRetour.onActionProperty().set((event) -> {
+            try {
+                LisTEvent.setContent(ListofAllEvent());
+            } catch (SQLException ex) {
+
+            }
+        });
+
+        H1.getChildren().addAll(btnRetour, Titre, Catgeorie);
+        H1.setAlignment(Pos.CENTER_LEFT);
+        H2.getChildren().addAll(DateDebut, DateFin);
+        V1.getChildren().addAll(H1, Descrip, H2, Lieu, Tarif, TichetDispo);
+        IMG.fitHeightProperty().set(300);
+        IMG.fitWidthProperty().set(450);
+        IMG.preserveRatioProperty().set(true);
+        Separator sep = new Separator(Orientation.VERTICAL);
+
+        V2.getChildren().addAll(IMG);
+        H0.getChildren().addAll(V1, sep, V2);
+        V0.getChildren().addAll(H0);
+
         return V0;
 
     }
