@@ -51,9 +51,7 @@ public class LoginController implements Initializable {
     private Text BtnForgetPassword;
     @FXML
     private PasswordField tfpass;
-    public static User CurrentUser
-            
-            ;
+    public static User CurrentUser;
 
     /**
      * Initializes the controller class.
@@ -80,22 +78,22 @@ public class LoginController implements Initializable {
 
             if (tfmail.getText().equals("")) {
                 tfmail.setStyle("-fx-border-color : red ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ");
-            Alert b = new Alert(Alert.AlertType.WARNING);
-            a.setContentText("Veuillez inserer votre email ");
-            a.showAndWait();
+                Alert b = new Alert(Alert.AlertType.WARNING);
+                a.setContentText("Veuillez inserer votre email ");
+                a.showAndWait();
             }
             if (tfpass.getText().equals("")) {
                 tfpass.setStyle("-fx-border-color : red ; -fx-border-width :  0 0 2px 0 ; -fx-background-color :  transparent ; -fx-text-fill : white ");
-            Alert c = new Alert(Alert.AlertType.WARNING);
-            a.setContentText("Veuillez inserer  et votre mot de pass");
-            a.showAndWait();
+                Alert c = new Alert(Alert.AlertType.WARNING);
+                a.setContentText("Veuillez inserer  et votre mot de pass");
+                a.showAndWait();
             }
         } else {
             String email = tfmail.getText();
             String pass = tfpass.getText();
             CrudUser crudutilisateur = new CrudUser();
             User u = crudutilisateur.Authentification(email, pass);
-                            System.out.println("user n'est pas null *****"+u);
+            System.out.println("user n'est pas null *****" + u);
 
             if (u == null) {
                 System.out.println("iln'yapas dns base");
@@ -106,65 +104,55 @@ public class LoginController implements Initializable {
 
             } else {
                 CurrentUser = u;
-                if(!u.getRoles().equals("Parent")){
-                System.out.println("parent");
-                
-              primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-                }
-                else if (!u.getRoles().equals("Admin")){
-                 primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-                }
-                else if (!u.getRoles().equals("Pediatre")){
-                                        System.out.println("    ped");
+                if (!u.getRoles().equals("Parent")) {
+                    System.out.println("parent");
 
-                primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-                primaryStage.setMaximized(true); 
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } else if (!u.getRoles().equals("Admin")) {
+                    System.out.println("    admin");
+
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } else if (!u.getRoles().equals("Pediatre")) {
+                    System.out.println("    ped");
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+                } else if (!u.getRoles().equals("BabySitter")) {
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
 
                 }
-                else if (!u.getRoles().equals("BabySitter")){
-                 primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-                primaryStage.setMaximized(true); 
 
-                }
-
-                
             }
         }
-
     }
-
-    public int getFile() {
-        return file;
-    }
-
-  
 
     @FXML
     private void Register(ActionEvent event) throws IOException {
-        primaryStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("R.fxml"));
-        Parent root = loader.load();
+        ((Node) event.getSource()).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("R.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Connexion");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+        stage.setScene(scene);
+        stage.show();
         /*  primaryStage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("R.fxml"));
             Scene scene = new Scene(root);

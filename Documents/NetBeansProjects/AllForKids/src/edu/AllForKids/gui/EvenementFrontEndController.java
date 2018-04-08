@@ -6,7 +6,10 @@
 package edu.AllForKids.gui;
 
 import edu.AllForKids.entities.Evenement;
+import edu.AllForKids.entities.Reservation;
+import edu.AllForKids.entities.User;
 import edu.AllForKids.services.CrudEvenement;
+import edu.AllForKids.services.CrudReservation;
 import java.awt.geom.Point2D;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -14,16 +17,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -44,6 +58,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -71,8 +86,13 @@ public class EvenementFrontEndController implements Initializable {
     private ScrollPane LisTEvent;
     @FXML
     private Button ChercherTitre;
+    public static User CurrentUser;
 
     CrudEvenement CE = new CrudEvenement();
+        CrudReservation CR = new CrudReservation();
+        Date date;
+        LoginController log;
+
     Evenement E = null;
 
     @Override
@@ -181,16 +201,20 @@ public class EvenementFrontEndController implements Initializable {
 
         VBox V0 = new VBox(10);
         HBox H0 = new HBox(6);
-        VBox V2 = new VBox(10);
+        VBox V2 = new VBox(6);
+        V2.setAlignment(Pos.CENTER);
 
         Image image = new Image("file:" + E.getNom_image());
         ImageView IMG = new ImageView(image);
-        IMG.preserveRatioProperty().set(true);
+        //  IMG.preserveRatioProperty().set(true);
 
         //Titre
-        HBox H1 = new HBox(8);
+        HBox H1 = new HBox(10);
+        V2.setAlignment(Pos.BASELINE_LEFT);
+
         Label Titre = new Label(E.getTitre());
-        Titre.setFont(new Font("Arial", 30));
+        Titre.setFont(new Font("Ravie", 35));
+        Titre.setAlignment(Pos.CENTER);
         TextArea Descrip = new TextArea(E.getDescription());
         Descrip.setWrapText(true);
         //Description
@@ -201,19 +225,22 @@ public class EvenementFrontEndController implements Initializable {
         HBox H2 = new HBox(10);
         Label DateDebut = new Label("Date de début : " + E.getDate_debut());
         DateDebut.setFont(new Font("Arial", 14));
-        Label DateFin = new Label("Date du fib : " + E.getDate_fin());
+        Label DateFin = new Label("Date du fin: " + E.getDate_fin());
         DateFin.setFont(new Font("Arial", 14));
-        Label Lieu = new Label("Lieu : " + E.getId_cat());
+        Label Lieu = new Label("Lieu : " + E.getLieu());
         Lieu.setFont(new Font("Arial", 14));
         Lieu.setFont(new Font("Arial", 14));
-        Label Catgeorie = new Label("Lieu : " + E.getId_cat());
-        Catgeorie.setFont(new Font("Arial", 14));
-        Catgeorie.setFont(new Font("Arial", 14));
+        Label catgeorie = new Label("Categorie : " + E.NomCategorie(E.getId_cat()));
+        catgeorie.setFont(new Font("Arial", 14));
+        catgeorie.setFont(new Font("Arial", 14));
 
-        Label TichetDispo = new Label("Durée : " + E.getTicket_disponible());
+        Label TichetDispo = new Label("Nombre de tickets disponibles : " + E.getTicket_disponible());
         TichetDispo.setFont(new Font("Arial", 14));
-        Label Tarif = new Label("Lieu : " + E.getTarif() + "DT");
+        Label Tarif = new Label("Tarif : " + E.getTarif() + "DT");
         Tarif.setFont(new Font("Arial", 14));
+        Label TichetAReserver = new Label("Nombre de tickets à reserver : ");
+        TichetDispo.setFont(new Font("Arial", 14));
+        TextField txtTicket = new TextField();
 
         VBox V1 = new VBox(10);
 
@@ -228,22 +255,77 @@ public class EvenementFrontEndController implements Initializable {
 
             }
         });
+        CrudReservation CR = new CrudReservation();
+        Button btnReserver = new Button("Reserver");
+        btnReserver.setStyle("-fx-background-color:  #2471A3 ; -fx-font-weight: bold");
+        btnReserver.setTextFill(Color.web("#FDFEFE"));
 
-        H1.getChildren().addAll(btnRetour, Titre, Catgeorie);
-        H1.setAlignment(Pos.CENTER_LEFT);
-        H2.getChildren().addAll(DateDebut, DateFin);
-        V1.getChildren().addAll(H1, Descrip, H2, Lieu, Tarif, TichetDispo);
-        IMG.fitHeightProperty().set(300);
-        IMG.fitWidthProperty().set(450);
-        IMG.preserveRatioProperty().set(true);
-        Separator sep = new Separator(Orientation.VERTICAL);
+        btnReserver.onActionProperty().set((event) -> {
+            
 
-        V2.getChildren().addAll(IMG);
-        H0.getChildren().addAll(V1, sep, V2);
-        V0.getChildren().addAll(H0);
+            
+                
+            try {
+                DateFormat date_format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                java.util.Date date = new java.util.Date();
+                  System.out.println(date_format.parse(date_format.format(date)));
+
+                System.out.println();
+                Reservation R =new Reservation(E.getId_even(), log.CurrentUser.getId(), date_format.parse(date_format.format(date)), Integer.parseInt(txtTicket.getText()));
+                
+                
+                
+                CR.ajouterReservation(R);
+                                JOptionPane.showMessageDialog(null, " Votre reservation est enregistrée");
+
+                System.out.println("reservat"+"   "+R);
+                System.out.println("reservation ajoutée");
+            } catch (ParseException ex) {
+                Logger.getLogger(EvenementFrontEndController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+            
+
+            
+        });
+
+        H0.getChildren().setAll(btnRetour);
+        V1.getChildren().addAll(H0, IMG, Titre);
+        HBox H4 = new HBox(6);
+        H4.getChildren().addAll(TichetAReserver, txtTicket, btnReserver);
+        HBox H5 = new HBox(6);
+        H5.getChildren().addAll(Descrip);
+
+        V2.getChildren().addAll(catgeorie, DateDebut, DateFin, Tarif, TichetDispo);
+        VBox V3 = new VBox(10);
+        VBox V4 = new VBox(8);
+        V3.getChildren().addAll(H5, V2, H4);
+
+        H1.getChildren().addAll(V2);
+        HBox H3 = new HBox(6);
+        // V4.getChildren().addAll(Descrip,Catgeorie,DateDebut,DateFin,Tarif,TichetDispo);
+        // H3.getChildren().addAll(V4);
+
+        V3.getChildren().addAll(H1, H3);
+
+        //HBox H2=new HBox(8);
+        // H1.getChildren().setAll(V1);
+        //VBox V3= new VBox(H0);
+        V0.getChildren().addAll(V1, V2, V3);
 
         return V0;
 
+        /* H1.getChildren().addAll(btnRetour);
+        H1.setAlignment(Pos.CENTER_LEFT);
+        Separator sephoriz = new Separator(Orientation.HORIZONTAL);
+        IMG.fitWidthProperty().set(450);
+        IMG.preserveRatioProperty().set(true);
+        H0.getChildren().addAll(H1,IMG,Titre, sephoriz);
+        H0.setAlignment(Pos.CENTER);
+V1.getChildren().addAll( Descrip, H2, Lieu, Catgeorie, TichetDispo);
+Separator sepvert=new Separator(Orientation.VERTICAL);
+H2.getChildren().addAll(V1);
+         */
     }
 
     @FXML

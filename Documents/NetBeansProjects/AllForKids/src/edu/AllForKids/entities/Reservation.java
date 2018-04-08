@@ -15,17 +15,33 @@ import java.util.Date;
 public class Reservation {
     private int id_reservation;
     private int id_even;
-    private Object id_client;
+    private int id_client;
     private int nbre_ticket;
     private Date date_reservation;
+   
 
-    public Reservation(int id_reservation, int id_even, Object id_client, int nbre_ticket, Date date_reservation) {
+
+    public Reservation() {
+    }
+    
+
+    public Reservation(int id_reservation, int id_even, int id_client, int nbre_ticket) {
         this.id_reservation = id_reservation;
+        this.id_even = id_even;
+        this.id_client = id_client;
+        this.nbre_ticket = nbre_ticket;
+       // this.date_reservation = date_reservation;
+    }
+
+    public Reservation(int id_even, int id_client,Date date_reservation, int nbre_ticket) {
         this.id_even = id_even;
         this.id_client = id_client;
         this.nbre_ticket = nbre_ticket;
         this.date_reservation = date_reservation;
     }
+     
+    
+    
 
     public void setId_even(int id_even) {
         this.id_even = id_even;
@@ -45,11 +61,11 @@ public class Reservation {
 
     
 
-    public Object getId_client() {
+    public int getId_client() {
         return id_client;
     }
 
-    public void setId_client(Object id_client) {
+    public void setId_client(int id_client) {
         this.id_client = id_client;
     }
 
@@ -68,6 +84,12 @@ public class Reservation {
     public void setDate_reservation(Date date_reservation) {
         this.date_reservation = date_reservation;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" + "id_reservation=" + id_reservation + ", id_even=" + id_even + ", id_client=" + id_client + ", nbre_ticket=" + nbre_ticket + ", date_reservation=" + date_reservation + '}';
+    }
+    
     
     
     

@@ -31,7 +31,7 @@ public class CrudUser {
 
         try {
 
-            String query = "INSERT INTO user (username, email,password, roles,  Age,  Sexe, adresse) VALUES(?,?,?,?,?,?,?)";
+            String query = "INSERT INTO user (username, email,password, roles,  Age,  Sexe, adresse,nom_image) VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(query);
             pst.setString(1, u.getUsername());
             pst.setString(2, u.getEmail());
@@ -42,6 +42,8 @@ public class CrudUser {
             pst.setString(6, u.getSexe());
 
             pst.setString(7, u.getAdresse());
+                        pst.setString(8, u.getNom_image());
+
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -81,8 +83,8 @@ public class CrudUser {
       
         while(rs.next()){
         
-   User m = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),rs.getString("enabled"),
-           rs.getString("password"), rs.getString("roles"));
+   User m = new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"),rs.getInt("enabled"),
+           rs.getString("password"), rs.getString("roles"),rs.getString("nom_image"));
 
                 
         return m ;

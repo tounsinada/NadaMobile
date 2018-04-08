@@ -140,9 +140,12 @@ setNode(GestionEvenement);
     @FXML
     private void disconnect(MouseEvent event) throws IOException {
         
-        AnchorPane pane=FXMLLoader.load(getClass().getResource("Login.fxml"));
-        
-        rootpane.getChildren().setAll(pane);
+       ((Node)event.getSource()).getScene().getWindow().hide();
+            Stage stage=new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show(); 
     }
     
      private void initiliser(User u) {

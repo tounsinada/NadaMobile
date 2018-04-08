@@ -414,7 +414,8 @@ public class GestionEvenementController implements Initializable {
         Tarif.setText(tarif1);
         String ticket = String.valueOf(E.getTicket_disponible());
         Ticketdispo.setText(ticket);
-        Categorie.getSelectionModel().select(E.getCategorie().getNomCategorie());
+//        Categorie.getSelectionModel().select(E.getCategorie().getNomCategorie());
+        Categorie.getSelectionModel().select(E.getId_cat());
 
     }
 

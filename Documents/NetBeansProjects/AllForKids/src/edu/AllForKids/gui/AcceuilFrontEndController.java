@@ -6,6 +6,8 @@
 package edu.AllForKids.gui;
 
 import edu.AllForKids.gui.LoginController;
+import static edu.AllForKids.gui.LoginController.CurrentUser;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,24 +84,18 @@ public class AcceuilFrontEndController implements Initializable {
 
             Parent root = loader.load();
 
-          LoginController  controllerLog = loader.getController();
-          // System.out.println("hhhhh"+controllerLog.getCurrentUser().getUsername());
-            //UserName.setText(controllerLog.CurrentUser.getUsername());
-            
-            Timer timer = new Timer();
-
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    //System.out.println(controllerLog.getCurrentUser().getUsername());
-                    // UserName.setText(controllerLog.getCurrentUser().getUsername());
-                    //UserImage.setImage(new Image("file:" + controllerLog.getCurrentUser().getNom_image()));
-
-                }
-            }, 0, 1000);
+            LoginController controllerLog = loader.getController();
+            System.out.println("*****" + CurrentUser.getUsername());
+            UserName.setText(controllerLog.CurrentUser.getUsername());
+            //  UserImage.setImage(new Image("file:" + CurrentUser.getNom_image()));
+            File file=new File("C:\\wamp64\\www\\PIN\\web\\images\\"+CurrentUser.getNom_image());
+            Image img = new Image(file.toURI().toString());
+            UserImage.setImage(img);
         } catch (IOException ex) {
             Logger.getLogger(AcceuilFrontEndController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+      
     }
 
     @FXML
@@ -108,19 +104,20 @@ public class AcceuilFrontEndController implements Initializable {
 
     @FXML
     private void Lougout(MouseEvent event) throws IOException {
-        
-        AnchorPane pane=FXMLLoader.load(getClass().getResource("Login.fxml"));
-        
-        rootpane.getChildren().setAll(pane);
-        
-       
+
+        ((Node) event.getSource()).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     private void setNode(Node node) {
 
         SrollPaneMain.setContent(node);
 
-        
     }
 
     @FXML
@@ -144,7 +141,7 @@ public class AcceuilFrontEndController implements Initializable {
 
     @FXML
     private void GetStore(ActionEvent event) {
-        setNode( GestionStore);
+        setNode(GestionStore);
         BtnStore.setStyle("-fx-background-color:  #2574A9");
         BtnStore.setTextFill(Color.web("#FBFCFC"));
         //
@@ -185,6 +182,7 @@ public class AcceuilFrontEndController implements Initializable {
         setNode(GestionEvenement);
         BtnEvenent.setStyle("-fx-background-color:  #2574A9");
         BtnEvenent.setTextFill(Color.web("#FBFCFC"));
+
         //
         BtnStore.setStyle("-fx-background-color:  #FFFFFF");
         BtnStore.setTextFill(Color.web("#2471A3"));

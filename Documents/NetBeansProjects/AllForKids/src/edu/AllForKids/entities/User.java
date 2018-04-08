@@ -47,29 +47,33 @@ public class User {
         this.adresse = adresse;
     }
 
-     public User( String username, String email, String password,  String roles, String Sexe) {
+    public User(String username, String email, String password, String nom_image, String roles, String Sexe) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.nom_image = nom_image;
+
         this.roles = roles;
         this.Sexe = Sexe;
     }
 
-    public User(int id, String username, String email, int enabled, String password, String roles) {
+    public User(int id, String username, String email, int enabled, String password, String roles, String nom_image) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.enabled = enabled;
         this.password = password;
         this.roles = roles;
-    }
-    
-    
-     public User( String email, String password) {
-        this.password = password;
-        this.email = email;}
+        this.nom_image = nom_image;
 
-    public User(int id, String username, String email, String password,  String roles, String Sexe) {
+    }
+
+    public User(String email, String password) {
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(int id, String username, String email, String password, String roles, String Sexe) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -78,7 +82,7 @@ public class User {
         this.Sexe = Sexe;
     }
 
-    public User(int id, String username, String email, String password, String roles, String nom_image, String Sexe, String adresse, int enabled ) {
+    public User(int id, String username, String email, String password, String roles, String nom_image, String Sexe, String adresse, int enabled) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -90,10 +94,6 @@ public class User {
         this.enabled = enabled;
     }
 
-  
-
-    
-    
     public int getId() {
         return id;
     }
@@ -190,8 +190,6 @@ public class User {
         this.roles = roles;
     }
 
-    
-
     public String getNom_image() {
         return nom_image;
     }
@@ -261,8 +259,4 @@ public class User {
         return "User{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email=" + email + ", email_canonical=" + email_canonical + ", enabled=" + enabled + ", salt=" + salt + ", password=" + password + ", last_login=" + last_login + ", confirmation_token=" + confirmation_token + ", password_requested_at=" + password_requested_at + ", roles=" + roles + ", nom_image=" + nom_image + ", Age=" + Age + ", Sexe=" + Sexe + ", adresse=" + adresse + ", Ville=" + Ville + ", nbrAnneeExp=" + nbrAnneeExp + ", Etat=" + Etat + ", numTe=" + numTe + '}';
     }
 
-    
-    
-    
-    
 }

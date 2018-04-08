@@ -76,7 +76,19 @@ public class Evenement {
         this.Tarif = Tarif;
     }
     
-  
+ public String NomCategorie(Integer id)
+ { String NomCategorie="";
+     if (id==1){ NomCategorie="Pour se cultiver";}
+          if (id==2){ NomCategorie="pour se distraire";}
+     if (id==3){ NomCategorie="Cinema";}
+     if (id==4){ NomCategorie="Randonnée";}
+     if (id==4){ NomCategorie="Autre";}
+
+     
+     
+     
+            return NomCategorie;
+ }
         
 
     public int getId_cat() {
@@ -169,11 +181,13 @@ public class Evenement {
         this.Tarif = Tarif;
     }
 
+   
+
     @Override
     public String toString() {
-        return "evenement{"+ ", titre=" + titre + ", Categorie_id=" + Categorie+ ", nom_image=" + nom_image + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", lieu=" + lieu + ", description=" + description + ", ticket_disponible=" + ticket_disponible + ", Tarif=" + Tarif + '}';
+        return "Evenement{" + "cnx=" + cnx + ", id_even=" + id_even + ", titre=" + titre + ", Categorie=" + Categorie + ", nom_image=" + nom_image + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", id_cat=" + id_cat + ", lieu=" + lieu + ", description=" + description + ", ticket_disponible=" + ticket_disponible + ", Tarif=" + Tarif + ", nomcateg=" + nomcateg + ", C=" + C + '}';
     }
-
+    
    
 
     

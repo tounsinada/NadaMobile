@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -26,11 +27,11 @@ public class EventMain extends Application {
         try {
             Parent root;
             
-           //root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+           root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             //root = FXMLLoader.load(getClass().getResource("GestionEvenement.fxml"));
-           // root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
-            root = FXMLLoader.load(getClass().getResource("EvenementFrontEnd.fxml"));
-          // root = FXMLLoader.load(getClass().getResource("R.fxml"));
+           //root = FXMLLoader.load(getClass().getResource("AcceuilFrontEnd.fxml"));
+           //root = FXMLLoader.load(getClass().getResource("EvenementFrontEnd.fxml"));
+         // root = FXMLLoader.load(getClass().getResource("R.fxml"));
             
             /// root = FXMLLoader.load(getClass().getResource("AC.fxml"));
               //root = FXMLLoader.load(getClass().getResource("AccueilBackEnd.fxml"));
@@ -42,6 +43,8 @@ public class EventMain extends Application {
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("All For Kids!");
+                   // primaryStage.getIcons().add(new Image("logo.png"));
+
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
