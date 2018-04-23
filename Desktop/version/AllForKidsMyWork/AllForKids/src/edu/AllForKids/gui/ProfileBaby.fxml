@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.AllForKids.gui.ProfileBabyController">
+   <children>
+      <Label fx:id="avisbtn" layoutX="-5.0" onDragDetected="#mesAvis" prefHeight="671.0" prefWidth="1050.0" style="-fx-background-color: #23A6C3;" />
+      <Label fx:id="username" layoutX="74.0" layoutY="83.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #EF9A33;" text="nom">
+         <font>
+            <Font name="Bauhaus 93" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="sexe" layoutX="395.0" layoutY="152.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Sexe:" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ImageView fx:id="tof" fitHeight="177.0" fitWidth="216.0" layoutX="52.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="49.0" fitWidth="200.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="etat" layoutX="395.0" layoutY="341.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="ville" layoutX="97.0" layoutY="469.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="adresse" layoutX="395.0" layoutY="281.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="nbrann" layoutX="501.0" layoutY="418.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="age" layoutX="97.0" layoutY="417.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="email" layoutX="395.0" layoutY="217.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="numtel" layoutX="501.0" layoutY="469.0" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #0E95B6;" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Text layoutX="322.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe:" wrappingWidth="38.03515625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="textadr" layoutX="310.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" wrappingWidth="63.03515625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="textetat" layoutX="322.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat:" wrappingWidth="38.03515625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="textville" layoutX="32.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ville:" wrappingWidth="38.03515625">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="textnum" layoutX="321.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro de téléphone:" wrappingWidth="169.99999835155904">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="textnbr" layoutX="291.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre d'année d'expérience(s):" wrappingWidth="208.03515625">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="317.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="49.03514277935028">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="textage" layoutX="33.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:" wrappingWidth="38.0351587831974">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="updateprofile" layoutX="619.0" layoutY="567.0" mnemonicParsing="false" onAction="#UpdateProfile" style="-fx-background-color: white;" text="Modifier Mon profil" />
+      <Button fx:id="offre" layoutX="937.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Mes Offres" />
+      <Button fx:id="offre1" layoutX="913.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Les Avis des Parents" />
+   </children>
+</AnchorPane>
