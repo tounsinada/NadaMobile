@@ -9,6 +9,7 @@ import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
@@ -18,6 +19,8 @@ import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.plaf.UIManager;
+import com.codename1.ui.util.Resources;
 import edu.allforkids.service.ServiceEvenement;
 import edu.allforkids.entities.Evenement;
 import java.util.ArrayList;
@@ -30,8 +33,11 @@ public class AfficheEvenement {
 
     Form f;
     SpanLabel lb;
+        private Resources theme;
+
 
     public AfficheEvenement() {
+        theme = UIManager.initFirstTheme("/theme");
 
         f = new Form();
         lb = new SpanLabel("");
@@ -174,13 +180,17 @@ public class AfficheEvenement {
                     c2.add(lbNBTicket);
                     c2.add(tfNbTicket);
                     c2.add(btnReserver);
+                     F2.getToolbar().addCommandToLeftBar("back", theme.getImage("back-command.png"), b -> {
+            f.showBack();
+        });
 
                     btnReserver.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent evt) {
-                            if (Integer.parseInt(tfNbTicket.getText())>0 &&
-                              Integer.parseInt(tfNbTicket.getText())<Integer.parseInt(lbTicket.getText())  )
-                              
+                            if (Integer.parseInt(tfNbTicket.getText())>0)
+                            //  Integer.parseInt(tfNbTicket.getText())<Integer.parseInt(lbTicket.getText())  )
+                                      Dialog.show("Dialog Title", "This is the dialog body, it can contain anything...", "OK", "Cancel");
+
                             {
                                 int decrement=i.getTicket_disponible()-Integer.parseInt(tfNbTicket.getText());
                             i.setTicket_disponible(decrement);
