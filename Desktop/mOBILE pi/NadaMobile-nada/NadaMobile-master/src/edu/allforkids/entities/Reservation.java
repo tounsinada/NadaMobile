@@ -21,13 +21,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int id_reservation, int id_even, int id_client, int nbre_ticket, String date_reservation, String nomEven) {
-        this.id_reservation = id_reservation;
+    public Reservation( int id_even, int id_client, int nbre_ticket) {
         this.id_even = id_even;
         this.id_client = id_client;
         this.nbre_ticket = nbre_ticket;
-        this.date_reservation = date_reservation;
-        this.nomEven = nomEven;
     }
 
     public int getId_reservation() {

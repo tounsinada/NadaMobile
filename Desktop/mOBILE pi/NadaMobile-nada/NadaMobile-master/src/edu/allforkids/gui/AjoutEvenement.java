@@ -33,33 +33,22 @@ public class AjoutEvenement {
     Form f = new Form("Ajout Evenement");
 
     public AjoutEvenement() {
-        
-        Label lbCategorie= new Label("Categorie:");
+
+        Label lbCategorie = new Label("Categorie:");
         ComboCatgorie = new ComboBox();
-        
-        
+
         ServiceEvenement se = new ServiceEvenement();
         ArrayList<Categorie> myList = new ArrayList<>();
-        myList=se.getAllCategorie();
-        
-        
-        
-        for(Categorie item : myList)
-        
+        myList = se.getAllCategorie();
+
+        for (Categorie item : myList) {
             ComboCatgorie.addItem(item.getNomCategorie());
-        
-        
-        
-                Container cCateg = new Container(new BoxLayout(BoxLayout.X_AXIS));
-                cCateg.add(lbCategorie);
-                cCateg.add(ComboCatgorie);
+        }
 
+        Container cCateg = new Container(new BoxLayout(BoxLayout.X_AXIS));
+        cCateg.add(lbCategorie);
+        cCateg.add(ComboCatgorie);
 
-        /*Label lbImage = new Label("Description :");
-        Container cDescrip = new Container(new BoxLayout(BoxLayout.X_AXIS));
-        cDescrip.add(lbImage);*/
-
-                
         tfDescription = new TextField();
         Label lbDescrip = new Label("Description :");
         Container cDescrip = new Container(new BoxLayout(BoxLayout.X_AXIS));
@@ -78,12 +67,11 @@ public class AjoutEvenement {
         cLieu.add(lbLieu);
         cLieu.add(tfLieu);
 
-       /* tfTarif = new TextField();
+        /* tfTarif = new TextField();
         Label lbTarif = new Label("Tarif :");
         Container cTarif = new Container(new BoxLayout(BoxLayout.X_AXIS));
         cTarif.add(lbTarif);
         cTarif.add(tfTarif);*/
-
         tfPlaceDispo = new TextField();
         Label lbTicket = new Label("Tickets disponible :");
         Container cTicketDidpo = new Container(new BoxLayout(BoxLayout.X_AXIS));
@@ -106,8 +94,8 @@ public class AjoutEvenement {
 
         btnajout = new Button("ajouter");
         f.add(cTitre);
-String stringdateD = new SimpleDateFormat("yyyy-MM-dd").format(dateDebut.getDate());
-String stringdateF = new SimpleDateFormat("yyyy-MM-dd").format(dateFin.getDate());
+        String stringdateD = new SimpleDateFormat("yyyy-MM-dd").format(dateDebut.getDate());
+        String stringdateF = new SimpleDateFormat("yyyy-MM-dd").format(dateFin.getDate());
 
         f.add(cDescrip);
         f.add(cTicketDidpo);
@@ -119,13 +107,16 @@ String stringdateF = new SimpleDateFormat("yyyy-MM-dd").format(dateFin.getDate()
         btnajout.addActionListener((e) -> {
             ServiceEvenement service = new ServiceEvenement();
             //int tarif= Integer.parseInt(tfTarif.getText());
-            int ticket=Integer.parseInt(tfPlaceDispo.getText());
-            Evenement E = new Evenement(0,tfTitre.getText(),"image", stringdateD, stringdateF, tfLieu.getText(),
-                    "Disponible", tfDescription.getText() ,1,ticket,1);
+            int ticket = Integer.parseInt(tfPlaceDispo.getText());
+            Categorie categ = service.getIDCATEG(ComboCatgorie.getSelectedItem().toString());
+
+            Evenement E = new Evenement(0, tfTitre.getText(), "image", stringdateD, stringdateF, tfLieu.getText(),
+                    "Disponible", tfDescription.getText(), 1, ticket, categ.getId());
             service.ajoutEvenement(E);
+            System.out.println(ComboCatgorie.getSelectedItem());
             System.out.println("even ajouté succée");
         });
-       
+
     }
 
     public Form getF() {
@@ -167,8 +158,6 @@ String stringdateF = new SimpleDateFormat("yyyy-MM-dd").format(dateFin.getDate()
     public void setTfPlaceDispo(TextField tfPlaceDispo) {
         this.tfPlaceDispo = tfPlaceDispo;
     }
-
-    
 
     public Button getBtnajout() {
         return btnajout;
